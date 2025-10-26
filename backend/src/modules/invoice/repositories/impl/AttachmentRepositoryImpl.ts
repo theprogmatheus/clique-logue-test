@@ -3,17 +3,44 @@ import type { AttachmentRepository } from "@/modules/invoice/repositories/Attach
 import { prismaClient } from "@/shared/prisma/prisma.client.js";
 
 export class AttachmentRepositoryImpl implements AttachmentRepository {
-    save(attachment: Attachment): Promise<Attachment> {
-        throw new Error("Method not implemented.");
+
+    async save(attachment: Attachment): Promise<Attachment> {
+        if (attachment.id) {
+            const result = await prismaClient.attachment.update({ where: { id: attachment.id }, data: attachment });
+            return result;
+        }
+
+        if (!(attachment.invoiceId && attachment.name
+            && attachment.path && attachment.size !== undefined))
+            throw new Error("");
+
+        const result = await prismaClient.attachment.create({
+            data: {
+                invoiceId: attachment.invoiceId,
+                name: attachment.name,
+                path: attachment.path,
+                size: attachment.size
+            }
+        });
+        return result;
     }
-    delete(id: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+
+    async delete(id: string): Promise<boolean> {
+        const attachments = await prismaClient.attachment.count({ where: { id } });
+        if (attachments <= 0)
+            return false;
+        await prismaClient.attachment.delete({ where: { id } });
+        return true;
     }
-    findById(id: string): Promise<Attachment | null> {
-        throw new Error("Method not implemented.");
+
+    async findById(id: string): Promise<Attachment | null> {
+        const result = await prismaClient.attachment.findFirst({ where: { id } });
+        return result;
     }
-    findByInvoiceId(invoiceId: string): Promise<Attachment[]> {
-        throw new Error("Method not implemented.");
+
+    async findByInvoiceId(invoiceId: string): Promise<Attachment[]> {
+        const result = await prismaClient.attachment.findMany({ where: { invoiceId } });
+        return result;
     }
 
 }

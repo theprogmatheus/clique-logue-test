@@ -4,7 +4,7 @@ export class Attachment {
     invoiceId?: string;
     name?: string;
     path?: string;
-    size?: string;
+    size?: number;
 
     constructor(attachment: Attachment) {
         Object.assign(this, attachment);
