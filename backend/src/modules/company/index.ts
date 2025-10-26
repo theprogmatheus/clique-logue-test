@@ -7,3 +7,6 @@ export async function companyModule(app: FastifyInstance) {
 
     await routes(app);
 }
+
+
+// OBS: preciso fazer validações de entradas de usuários ainda, salvar o CNPJ com regex numérico sem formatação.
