@@ -35,7 +35,7 @@ model Company {
 model Contract {
   id                 String    @id @default(uuid())
   companyId          String
-  company            Company   @relation(fields: [companyId], references: [id])
+  company            Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
   name               String
   code               String
   technicalRetention Int
@@ -47,7 +47,7 @@ model Contract {
 model Invoice {
   id                        String       @id @default(uuid())
   contractId                String
-  contract                  Contract     @relation(fields: [contractId], references: [id])
+  contract                  Contract     @relation(fields: [contractId], references: [id], onDelete: Cascade)
   code                      String
   issueDate                 DateTime
   dueDate                   DateTime
@@ -70,7 +70,7 @@ model Attachment {
   id String @id @default(uuid())
 
   invoiceId String
-  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
   name      String
   path      String
   size      Int
