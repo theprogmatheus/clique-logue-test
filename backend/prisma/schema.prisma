@@ -14,3 +14,66 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       String @id @default(uuid())
+  name     String
+  password String
+
+  @@map("user")
+}
+
+model Company {
+  id            String     @id @default(uuid())
+  cnpj          String     @unique
+  name          String
+  comercialName String
+  Contract      Contract[]
+
+  @@map("company")
+}
+
+model Contract {
+  id                 String    @id @default(uuid())
+  companyId          String
+  company            Company   @relation(fields: [companyId], references: [id])
+  name               String
+  code               String
+  technicalRetention Int
+  Invoice            Invoice[]
+
+  @@map("contract")
+}
+
+model Invoice {
+  id                        String       @id @default(uuid())
+  contractId                String
+  contract                  Contract     @relation(fields: [contractId], references: [id])
+  code                      String
+  issueDate                 DateTime
+  dueDate                   DateTime
+  value                     Int
+  withholdingTaxes          Boolean
+  issqnTax                  Int?
+  irrfTax                   Int?
+  csllTax                   Int?
+  cofinsTax                 Int?
+  inssTax                   Int?
+  pisTax                    Int?
+  technicalRetention        Boolean
+  technicalRetentionPercent Int?
+  Attachment                Attachment[]
+
+  @@map("invoice")
+}
+
+model Attachment {
+  id String @id @default(uuid())
+
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  name      String
+  path      String
+  size      Int
+
+  @@map("attachment")
+}
