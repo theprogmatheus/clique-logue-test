@@ -20,6 +20,7 @@
   "homepage": "https://github.com/theprogmatheus/clique-logue-test#readme",
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "dotenv": "^17.2.3",
     "fastify": "^5.6.1"
   },
   "devDependencies": {

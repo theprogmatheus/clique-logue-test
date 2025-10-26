@@ -4,6 +4,10 @@ import { prismaClient } from "@/shared/prisma/prisma.client.js";
 
 export class CompanyRepositoryImpl implements CompanyRepository {
 
+    async exists(cnpj: string): Promise<boolean> {
+        const count = await prismaClient.company.count({ where: { cnpj } });
+        return count > 0;
+    }
 
     async findById(id: string): Promise<Company | null> {
         const result = await prismaClient.company.findFirst({ where: { id } });
