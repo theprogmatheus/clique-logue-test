@@ -54,4 +54,7 @@ CREATE TABLE "attachment" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "user_name_key" ON "user"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "company_cnpj_key" ON "company"("cnpj");
