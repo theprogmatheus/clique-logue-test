@@ -1,3 +1,5 @@
+import type { FastifyReply } from "fastify";
+
 export class ResponseEntity<T> {
 
     public status: number;
@@ -14,5 +16,10 @@ export class ResponseEntity<T> {
 
         if (response.message)
             this.message = response.message;
+    }
+
+
+    send(rep: FastifyReply) {
+        return rep.status(this.status).send(this);
     }
 }
