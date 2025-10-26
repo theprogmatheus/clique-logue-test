@@ -1,7 +1,7 @@
+import { Contract } from "@/modules/contract/models/Contract.js";
 import type { ContractService } from "@/modules/contract/services/ContractService.js";
 import { ResponseEntity } from "@/shared/ResponseEntity.js";
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { Contract } from "../models/Contract.js";
 
 export class ContractController {
 
@@ -17,10 +17,11 @@ export class ContractController {
 
         const result = await this.contractService.newContract(req.body);
 
-        if (result instanceof Contract)
-            return new ResponseEntity({ status: 201, body: result }).send(rep);
+        if (typeof result === "string")
+            return new ResponseEntity({ status: 400, message: result, body: {} }).send(rep);
 
-        return new ResponseEntity({ status: 400, message: result, body: {} }).send(rep);
+        return new ResponseEntity({ status: 201, body: result }).send(rep);
+
     }
 
     async updateContract(req: FastifyRequest, rep: FastifyReply) {

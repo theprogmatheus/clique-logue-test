@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import { companyModule } from "@/modules/company/index.js";
+import { contractModule } from "@/modules/contract/index.js";
 import { fastify } from "fastify";
 
 const start = async () => {
@@ -9,6 +10,7 @@ const start = async () => {
 
         // register modules..
         app.register(companyModule);
+        app.register(contractModule);
 
         await app.listen({ port: 3333 });
         console.log("Server running at http://localhost:3333/");
