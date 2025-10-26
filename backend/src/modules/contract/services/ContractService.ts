@@ -59,10 +59,8 @@ export class ContractService {
         return contracts;
     }
 
-    async getContract(contractId: string): Promise<Contract | string> {
+    async getContract(contractId: string): Promise<Contract | null> {
         const contract = await this.contractRepository.findById(contractId);
-        if (!contract)
-            return "Contract not found.";
         return contract;
     }
 
