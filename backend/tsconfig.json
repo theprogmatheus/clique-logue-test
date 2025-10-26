@@ -5,6 +5,11 @@
     "module": "nodenext",
     "target": "es2020",
     "moduleResolution": "nodenext",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "esModuleInterop": true,
     "types": [],
     "sourceMap": true,
