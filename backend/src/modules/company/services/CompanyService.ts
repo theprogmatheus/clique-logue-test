@@ -39,7 +39,7 @@ export class CompanyService {
         if (!validateCNPJ(body.cnpj))
             return "Invalid CNPJ! To register a company, you need a valid CNPJ.";
 
-        const alreadyRegistered = await this.companyRepository.exists(body.cnpj);
+        const alreadyRegistered = await this.companyRepository.existsByCNPJ(body.cnpj);
 
         if (alreadyRegistered)
             return "There is already a company registered with this CNPJ.";

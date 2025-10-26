@@ -2,7 +2,8 @@ import type { Company } from "@/modules/company/models/Company.js";
 
 export interface CompanyRepository {
 
-    exists(cnpj: string): Promise<boolean>;
+    existsByCNPJ(cnpj: string): Promise<boolean>;
+    existsById(id: string): Promise<boolean>;
     findById(id: string): Promise<Company | null>;
     findByCNPJ(cnpj: string): Promise<Company | null>;
     save(company: Company): Promise<Company>;
