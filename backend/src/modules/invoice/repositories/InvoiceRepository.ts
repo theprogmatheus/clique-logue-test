@@ -6,5 +6,6 @@ export interface InvoiceRepository {
     delete(id: string): Promise<boolean>;
     findByContractId(contractId: string): Promise<Invoice[]>;
     findById(id: string): Promise<Invoice | null>;
+    exists(id: string): Promise<boolean>;
 
 }

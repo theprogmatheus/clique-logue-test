@@ -4,6 +4,12 @@ import { prismaClient } from "@/shared/prisma/prisma.client.js";
 
 export class InvoiceRepositoryImpl implements InvoiceRepository {
 
+
+    async exists(id: string): Promise<boolean> {
+        const result = await prismaClient.invoice.count({ where: { id } });
+        return result > 0;
+    }
+
     async save(invoice: Invoice): Promise<Invoice> {
         if (invoice.id) {
             const result = await prismaClient.invoice.update({ where: { id: invoice.id }, data: invoice });
