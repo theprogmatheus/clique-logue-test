@@ -1,17 +1,14 @@
 import type { ContractRepository } from "@/modules/contract/repositories/ContractRepository.js";
 import type { Invoice } from "@/modules/invoice/models/Invoice.js";
-import type { AttachmentRepository } from "@/modules/invoice/repositories/AttachmentRepository.js";
 import type { InvoiceRepository } from "@/modules/invoice/repositories/InvoiceRepository.js";
 
 export class InvoiceService {
 
     invoiceRepository: InvoiceRepository;
-    attachmentRepository: AttachmentRepository;
     contractRepository: ContractRepository;
 
-    constructor(invoiceRepository: InvoiceRepository, attachmentRepository: AttachmentRepository, contractRepository: ContractRepository) {
+    constructor(invoiceRepository: InvoiceRepository, contractRepository: ContractRepository) {
         this.invoiceRepository = invoiceRepository;
-        this.attachmentRepository = attachmentRepository;
         this.contractRepository = contractRepository;
     }
 
