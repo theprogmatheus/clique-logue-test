@@ -14,10 +14,8 @@ export class AttachmentService {
         this.invoiceRepository = invoiceRepository;
     }
 
-    async getAttachment(attachmentId: string): Promise<Attachment | string> {
+    async getAttachment(attachmentId: string): Promise<Attachment | null> {
         const attachment = await this.attachmentRepository.findById(attachmentId);
-        if (!attachment)
-            return "Attachment not found.";
         return attachment;
     }
 
