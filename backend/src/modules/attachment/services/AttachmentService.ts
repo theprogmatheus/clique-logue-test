@@ -1,5 +1,5 @@
-import { Attachment } from "@/modules/invoice/models/Attachment.js";
-import type { AttachmentRepository } from "@/modules/invoice/repositories/AttachmentRepository.js";
+import { Attachment } from "@/modules/attachment/models/Attachment.js";
+import type { AttachmentRepository } from "@/modules/attachment/repositories/AttachmentRepository.js";
 import type { InvoiceRepository } from "@/modules/invoice/repositories/InvoiceRepository.js";
 import fs from "fs";
 import path from "path";

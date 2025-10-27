@@ -1,5 +1,5 @@
-import type { Attachment } from "@/modules/invoice/models/Attachment.js";
-import type { AttachmentRepository } from "@/modules/invoice/repositories/AttachmentRepository.js";
+import type { Attachment } from "@/modules/attachment/models/Attachment.js";
+import type { AttachmentRepository } from "@/modules/attachment/repositories/AttachmentRepository.js";
 import { prismaClient } from "@/shared/prisma/prisma.client.js";
 
 export class AttachmentRepositoryImpl implements AttachmentRepository {

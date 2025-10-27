@@ -1,4 +1,4 @@
-import type { Attachment } from "@/modules/invoice/models/Attachment.js";
+import type { Attachment } from "@/modules/attachment/models/Attachment.js";
 
 export interface AttachmentRepository {
 
