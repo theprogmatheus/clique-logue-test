@@ -1,111 +1,4 @@
-.page {
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgb(245, 255, 231);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.page .content {
-    width: 70%;
-    background-color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid lightgray;
-}
-
-.page .content .header {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.page .content .header .brand {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.page .content .header .brand .logo {
-    width: 130px;
-    background-color: rgb(48, 68, 119);
-    align-self: flex-start;
-}
-
-.page .content .header .brand .logo img {
-    width: 100%;
-}
-
-.page .content .header .brand h1 {
-    width: 100%;
-    font-size: 2.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.page .content .header .info {
-    width: 100%;
-    border: 1px solid red;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 10px 0 10px 0;
-    font-size: 1.2rem;
-}
-
-.page .content .header .info div {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.page .content .header .info div.cnpj {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
-
-.page .content .header .info div p {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-.page .content .body {
-    width: 100%;
-    border-radius: 12px;
-}
-
-.page .content .body .title {
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1rem;
-    padding: 5px;
-    border: 1px solid red;
-    border-radius: 8px;
-}
-
-.page .content .body .table {
+.table {
     display: table;
     width: 100%;
     border-collapse: separate;
@@ -113,23 +6,23 @@
 
 }
 
-.page .content .body .table .line {
+.table .line {
     display: table-row;
     background-color: rgb(242, 241, 241);
 
 }
 
-.page .content .body .table .line div {
+.table .line div {
     display: table-cell;
     vertical-align: middle;
 }
 
-.page .content .body .table .description {
+.table .description {
     background-color: darkgray;
     color: white;
 }
 
-.page .content .body .table .description div {
+.table .description div {
     padding: 4px;
 }
 
@@ -139,62 +32,6 @@
     text-align: center;
     width: 70%;
     padding: 2 px;
-}
-
-
-.page .content .footer {
-    width: 100%;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.page .content .footer .footerLogo {
-    width: 115px;
-    background-color: rgb(48, 68, 119);
-    margin-top: 25px;
-
-}
-
-.page .content .footer .footerLogo img {
-    width: 100%;
-}
-
-.page .content .footer .footerButtons {
-    width: 50%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.page .content .footer button {
-    width: 40%;
-    padding: 5px;
-    cursor: pointer;
-    margin: 5px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0);
-}
-
-.page .content .footer button:hover {
-    border: 1px solid darkslategray;
-}
-
-img {
-    max-width: 200px;
-}
-
-.btnAnterior {
-    background-color: orange;
-    color: white;
-}
-
-.btnProximo {
-    background-color: green;
-    color: white;
 }
 
 .buttonDetails {
