@@ -1,5 +1,5 @@
 import PagamentoFornecedor from "@/pages/templates/PagamentoFornecedor";
-import Style from "@/pages/NotaFiscal/style.module.css";
+import Style from "@/pages/NotaFiscal/style.module.scss";
 
 export default function NotaFiscal() {
     return (

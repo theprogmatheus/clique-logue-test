@@ -7,7 +7,7 @@ import {
     FieldSet
 } from "@/components/ui/field";
 import { IMaskInput } from "react-imask";
-import style from "@/pages/Consulta/style.module.css";
+import style from "@/pages/Consulta/style.module.scss";
 
 import useAPI from "@/hooks/useAPI";
 import { useState } from "react";

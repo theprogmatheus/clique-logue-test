@@ -1,5 +1,5 @@
 import PagamentoFornecedor from "@/pages/templates/PagamentoFornecedor";
-import Style from "@/pages/Contratos/index.module.css";
+import Style from "@/pages/Contratos/index.module.scss";
 
 export default function Contratos() {
     return (

@@ -1,0 +1,32 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(36, 36, 36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+        background: #FFF;
+        border-radius: 8px;
+        padding: 20px;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        a {
+            color: blueviolet;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+        }
+    }
+}

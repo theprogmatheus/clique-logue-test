@@ -1,0 +1,91 @@
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+
+    .line {
+        display: table-row;
+        background-color: rgb(242, 241, 241);
+
+        div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .techRetention {
+            background-color: rgb(62, 95, 196);
+            color: white;
+            text-align: center;
+            width: 70%;
+            padding: 2 px;
+        }
+
+        .buttonDetails {
+            width: 35px;
+            height: 35px;
+            background-color: rgb(62, 95, 196);
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+
+
+
+        .checkbox {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            font-family: sans-serif;
+            position: relative;
+
+            &:hover .checkmark {
+                background-color: #DDD;
+            }
+
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+
+                &:checked+.checkmark {
+                    background-color: #4f46e5;
+
+                    &::after {
+                        content: "✓";
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .checkmark {
+                width: 30px;
+                height: 30px;
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+
+    .description {
+        background-color: darkgray;
+        color: white;
+
+        div {
+            padding: 4px;
+        }
+    }
+}

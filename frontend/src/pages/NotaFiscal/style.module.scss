@@ -1,0 +1,70 @@
+.container {
+    font-size: 1rem;
+    padding: 10px;
+
+    .contractInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+
+        .contractInfoCell {
+            width: 100%;
+            display: inline-flex;
+
+            .contractInfoCellKey {
+                font-weight: bold;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .contractForm {
+        input {
+            border: 1px solid gray;
+            outline: none;
+
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .contractFormRow {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            p {
+                font-weight: bold;
+            }
+
+            .contractFormLabelInline {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+
+                p {
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .contractFormTaxes {
+            flex-wrap: wrap;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .contractFormTechRetention label {
+            width: 45%;
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+}
