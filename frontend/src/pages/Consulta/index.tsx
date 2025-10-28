@@ -9,10 +9,27 @@ import {
 import { IMaskInput } from "react-imask";
 import style from "@/pages/Consulta/style.module.css";
 
+import useAPI from "@/hooks/useAPI";
+import { useState } from "react";
+
 export default function Consulta() {
+    const { getCompanyByCNPJ } = useAPI();
+    const [cnpj, setCNPJ] = useState('');
+
+
+
+    async function handleSubmit() {
+        const result = await getCompanyByCNPJ(cnpj);
+        console.log(result);
+    }
+
+
     return (
         <div className={style.page}>
-            <form className={style.form}>
+            <form className={style.form} onSubmit={e => {
+                e.preventDefault();
+                handleSubmit();
+            }}>
                 <div className={style.logo}>
                     <img src={logo} />
                 </div>
@@ -27,6 +44,9 @@ export default function Consulta() {
                             CNPJ
                         </FieldLabel>
                         <IMaskInput
+                            value={cnpj}
+                            unmask={true}
+                            onAccept={v => setCNPJ(v)}
                             className={style.cnpjInput}
                             id="cnpj-input"
                             mask="00.000.000/0000-00"
