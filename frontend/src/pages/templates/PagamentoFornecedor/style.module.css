@@ -121,7 +121,7 @@
     width: 200px;
     opacity: .9;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 5px;
     transition: .3s;
 }
 
@@ -144,4 +144,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: gray;
 }
