@@ -1,0 +1,147 @@
+.page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(178, 200, 185);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.page .container {
+    background-color: #FFF;
+    width: 75%;
+    padding: 10px;
+}
+
+.page .container .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page .container .header h1 {
+    width: 100%;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.page .container .header .headerLogo {
+    width: 150px;
+    background-color: rgb(35, 62, 143);
+}
+
+.page .container .header .headerLogo img {
+    width: 100%;
+}
+
+.page .container .companyInfoSection {
+    border: 1px solid red;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+}
+
+.page .container .companyInfoSection .companyInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.page .container .companyInfoSection .companyInfoRigth {
+    justify-content: flex-end;
+}
+
+.page .container .companyInfoSection .companyInfo .companyInfoKey {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.page .container .moduleName {
+    border: 1px solid red;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.page .container .content {
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.page .container .footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page .container .footer div {
+    width: 50%;
+}
+
+.page .container .footer .footerLogo {
+    width: 130px;
+    background-color: rgb(35, 62, 143);
+}
+
+.page .container .footer .footerLogo img {
+    width: 100%;
+}
+
+.page .container .footer .footerButtons {
+    width: calc(100% - 150px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.page .container .footer .footerButtons button {
+    padding: 5px;
+    margin-left: 10px;
+    width: 200px;
+    opacity: .9;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.page .container .footer .footerButtons button:hover {
+    opacity: 1;
+}
+
+.page .container .footer .footerButtons .footerButtonPrevious {
+    background-color: orange;
+    color: #FFF;
+}
+
+.page .container .footer .footerButtons .footerButtonNext {
+    background-color: green;
+    color: #FFF;
+}
+
+.page .container .footer .footerCopyright {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
