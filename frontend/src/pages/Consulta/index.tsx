@@ -1,14 +1,43 @@
 import logo from "@/assets/images/logo.png";
+import { Button } from "@/components/ui/button";
+import {
+    Field,
+    FieldGroup,
+    FieldLabel,
+    FieldSet
+} from "@/components/ui/field";
+import { IMaskInput } from "react-imask";
+import style from "@/pages/Consulta/style.module.css";
 
 export default function Consulta() {
     return (
-        <div>
-            <form>
-                <img src={logo} />
-                <h1>Pagamento de Fornecedor</h1>
-                <label>CNPJ</label>
-                <input type="text" />
-                <button>Acessar</button>
+        <div className={style.page}>
+            <form className={style.form}>
+                <div className={style.logo}>
+                    <img src={logo} />
+                </div>
+                <FieldGroup>
+                    <FieldSet>
+                        <h1>Pagamento de Fornecedor</h1>
+                    </FieldSet>
+                </FieldGroup>
+                <FieldGroup className={style.inputGroup}>
+                    <Field>
+                        <FieldLabel htmlFor="cnpj-input">
+                            CNPJ
+                        </FieldLabel>
+                        <IMaskInput
+                            className={style.cnpjInput}
+                            id="cnpj-input"
+                            mask="00.000.000/0000-00"
+                            minLength={18}
+                            required
+                        />
+                    </Field>
+                    <Field>
+                        <Button className={style.submitButton} type="submit">Acessar</Button>
+                    </Field>
+                </FieldGroup>
             </form>
         </div>
     );
