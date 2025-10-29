@@ -83,13 +83,13 @@ O frontend será executado em `http://localhost:5173` (porta padrão do Vite).
 # Backend
 cd backend
 npm install
-echo "DATABASE_URL=file:./dev.db" > .env
+echo DATABASE_URL=file:./dev.db | Out-File -Encoding utf8 .env
 npx prisma generate
 npm run dev
 
 # Frontend
 cd frontend
 npm install
-echo "VITE_API_URL=http://localhost:3333" > .env
+echo echo VITE_API_URL=http://localhost:3333 | Out-File -Encoding utf8 .env
 npm run dev
 ```
