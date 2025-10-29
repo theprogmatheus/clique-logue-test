@@ -90,6 +90,6 @@ npm run dev
 # Frontend
 cd frontend
 npm install
-echo echo VITE_API_URL=http://localhost:3333 | Out-File -Encoding utf8 .env
+echo VITE_API_URL=http://localhost:3333 | Out-File -Encoding utf8 .env
 npm run dev
 ```
