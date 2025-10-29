@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function useContrato() {
 
     const { getContractsByCompany } = useAPI();
-    const { company } = useAppContext();
+    const { company, setContract } = useAppContext();
     const navigate = useNavigate();
 
     const [contracts, setContracts] = useState<Contract[]>([]);
@@ -47,6 +47,7 @@ export default function useContrato() {
     function handleNextButton(): void {
         // verificar o contrato selecionado, e ir para a página de nota fiscal
         if (selectedContract) {
+            setContract(selectedContract);
             navigate("/notafiscal");
             return;
         }

@@ -1,17 +1,35 @@
 import PagamentoFornecedor from "@/pages/templates/PagamentoFornecedor";
 import Style from "@/pages/NotaFiscal/style.module.scss";
+import useNotaFiscal from "@/hooks/useNotaFiscal";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircleIcon } from "lucide-react";
 
 export default function NotaFiscal() {
+
+    const {
+        company,
+        contract,
+        formErrorMessage,
+        withholdingTaxes,
+        technicalRetention,
+        navigate,
+        register,
+        handleNextButton,
+        handlePreviousButton
+    } = useNotaFiscal();
+
+    if (contract == null) {
+        navigate("/contratos");
+        return (<></>);
+    }
+
     return (
         <PagamentoFornecedor
             moduleName="Dados da Nota Fiscal"
-            company={
-                {
-                    name: "Razão Social do Fornecedor Logado",
-                    comercialName: "Nome Fantasia do Fornecedor Logado",
-                    cnpj: "00.000.000/000-00"
-                }
-            }
+            company={company}
+            alert={null}
+            handleNextButton={handleNextButton}
+            handlePreviousButton={handlePreviousButton}
         >
             <div className={Style.container}>
                 <div className={Style.contractInfo}>
@@ -24,32 +42,50 @@ export default function NotaFiscal() {
                     </div>
                 </div>
 
-                <form className={Style.contractForm}>
+                <form className={Style.contractForm} >
                     <div className={Style.contractFormRow}>
                         <label>
                             <p>Número da Nota</p>
-                            <input type="text" />
+                            <input type="text" {
+                                ...register(
+                                    "code",
+                                    {
+                                        required: "Você precisa informar o número da nota fiscal.",
+                                        pattern: {
+                                            value: /^[0-9]+$/,
+                                            message: "O número da nota é inválido."
+                                        }
+                                    }
+                                )
+                            } />
                         </label>
 
                         <label>
                             <p>Data de Emissão</p>
-                            <input type="date" />
+                            <input type="date" {...register("issueDate", { required: "Você precisa informar a data de emissão da nota fiscal.", valueAsDate: true })} />
                         </label>
 
                         <label>
                             <p>Data de Vencimento</p>
-                            <input type="date" />
+                            <input type="date" {...register("dueDate", { required: "Você precisa informar a data de vencimento da nota fiscal.", valueAsDate: true })} />
                         </label>
 
                         <label>
                             <p>Valor</p>
-                            <input type="number" />
+                            <input type="number" {
+                                ...register("value",
+                                    {
+                                        required: "Você precisa informar o valor da nota fiscal.",
+                                        min: { value: 0, message: "O valor da nota fiscal não pode ser negativo." },
+                                        valueAsNumber: true
+                                    }
+                                )} />
                         </label>
                     </div>
 
                     <div className={Style.contractFormRow}>
                         <label className={Style.contractFormLabelInline}>
-                            <input type="checkbox" />
+                            <input type="checkbox" {...register("withholdingTaxes")} />
                             <p>Retenção de Impostos</p>
                         </label>
                     </div>
@@ -57,53 +93,62 @@ export default function NotaFiscal() {
                     <div className={`${Style.contractFormRow} ${Style.contractFormTaxes}`}>
                         <label>
                             <p>ISSQN</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes} {...register("issqnTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                         <label>
                             <p>IRRF</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes}{...register("irrfTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                         <label>
                             <p>CSLL</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes} {...register("csllTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                         <label>
                             <p>COFINS</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes} {...register("cofinsTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                         <label>
                             <p>INSS</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes} {...register("inssTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                         <label>
                             <p>PIS</p>
-                            <input type="number" />
+                            <input type="number" disabled={!withholdingTaxes} {...register("pisTax", { valueAsNumber: true, min: { value: 0, message: "O valor do imposto não pode ser negativo" } })} />
                         </label>
                     </div>
 
 
                     <div className={Style.contractFormRow}>
                         <label className={Style.contractFormLabelInline}>
-                            <input type="checkbox" />
+                            <input type="checkbox" {...register("technicalRetention")} />
                             <p>Retenção Técnica</p>
                         </label>
                     </div>
                     <div className={`${Style.contractFormRow} ${Style.contractFormTechRetention}`}>
                         <label>
                             <p>Valor</p>
-                            <input type="number" />
+                            <input type="number" disabled={!technicalRetention} />
                         </label>
                         <label>
                             <p>Percentual</p>
-                            <input type="number" />
+                            <input type="number" disabled={!technicalRetention} {...register("technicalRetentionPercent", { valueAsNumber: true, min: 0 })} />
                         </label>
                     </div>
 
                     <div className={`${Style.contractFormRow} ${Style.contractFormAttachment}`}>
-                        <input type="file" />
+                        <input type="file" {...register("attachment", { required: "Você precisa anexar a nota fiscal." })} />
                     </div>
                 </form>
 
+                {formErrorMessage &&
+                    <Alert variant="destructive">
+                        <AlertCircleIcon />
+                        <AlertTitle>Dados incompletos.</AlertTitle>
+                        <AlertDescription>
+                            <p>{formErrorMessage}</p>
+                        </AlertDescription>
+                    </Alert>
+                }
             </div>
         </PagamentoFornecedor>
     );
