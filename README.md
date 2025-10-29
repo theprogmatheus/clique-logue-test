@@ -80,6 +80,10 @@ O frontend será executado em `http://localhost:5173` (porta padrão do Vite).
 ## Resumo dos comandos
 
 ```bash
+# Clone
+git clone https://github.com/theprogmatheus/clique-logue-test.git
+cd clique-logue-test
+
 # Backend
 cd backend
 npm install
