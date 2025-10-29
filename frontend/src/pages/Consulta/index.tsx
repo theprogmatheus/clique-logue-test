@@ -1,4 +1,5 @@
 import logo from "@/assets/images/logo.png";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
     Field,
@@ -6,30 +7,18 @@ import {
     FieldLabel,
     FieldSet
 } from "@/components/ui/field";
-import { IMaskInput } from "react-imask";
+import useConsulta from "@/hooks/useConsulta";
 import style from "@/pages/Consulta/style.module.scss";
-
-import useAPI from "@/hooks/useAPI";
-import { useState } from "react";
+import { AlertCircleIcon } from "lucide-react";
+import { IMaskInput } from "react-imask";
 
 export default function Consulta() {
-    const { getCompanyByCNPJ } = useAPI();
-    const [cnpj, setCNPJ] = useState('');
 
-
-
-    async function handleSubmit() {
-        const result = await getCompanyByCNPJ(cnpj);
-        console.log(result);
-    }
-
+    const { cnpj, setCNPJ, handleSubmit, alert } = useConsulta();
 
     return (
         <div className={style.page}>
-            <form className={style.form} onSubmit={e => {
-                e.preventDefault();
-                handleSubmit();
-            }}>
+            <form className={style.form} onSubmit={handleSubmit}>
                 <div className={style.logo}>
                     <img src={logo} />
                 </div>
@@ -54,10 +43,21 @@ export default function Consulta() {
                             required
                         />
                     </Field>
+
+                    {alert &&
+                        <Alert variant="destructive">
+                            <AlertCircleIcon />
+                            <AlertTitle>{alert.title}</AlertTitle>
+                            <AlertDescription>
+                                <p>{alert.message}</p>
+                            </AlertDescription>
+                        </Alert>
+                    }
                     <Field>
                         <Button className={style.submitButton} type="submit">Acessar</Button>
                     </Field>
                 </FieldGroup>
+
             </form>
         </div>
     );

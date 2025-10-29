@@ -1,6 +1,11 @@
 import AppRoutes from "@/routes";
 import "@/styles/index.css";
+import { AppContextProvider } from "@/contexts/AppContext";
 
 export default function App() {
-    return <AppRoutes />;
+    return (
+        <AppContextProvider>
+            <AppRoutes />
+        </AppContextProvider>
+    );
 }
