@@ -1,15 +1,27 @@
 import PagamentoFornecedor from "@/pages/templates/PagamentoFornecedor";
 import Style from "@/pages/Contratos/index.module.scss";
+import useContrato from "@/hooks/useContrato";
 
 export default function Contratos() {
+
+    const {
+        company,
+        contracts,
+        selectedContract,
+        alert,
+        showContractDetails,
+        handlePreviousButton,
+        handleNextButton,
+        handleSelectContract
+    } = useContrato();
+
     return (
         <PagamentoFornecedor
             moduleName="Contratos Vinculados"
-            company={{
-                name: "Razão Social do Fornecedor Logado",
-                comercialName: "Nome Fantasia do Fornecedor Logado",
-                cnpj: "00.000.000/000-00"
-            }}
+            company={company}
+            alert={alert}
+            handleNextButton={handleNextButton}
+            handlePreviousButton={handlePreviousButton}
         >
             <div className={Style.table}>
                 <div className={`${Style.line} ${Style.description}`}>
@@ -27,33 +39,31 @@ export default function Contratos() {
                         <p>Detalhes</p>
                     </div>
                 </div>
-
-                <div className={Style.line}>
-                    <div>
-                        <label className={Style.checkbox}>
-                            <input type="checkbox" />
-                            <span className={Style.checkmark}></span>
-                        </label>
+                {contracts.map((contract, index) => (
+                    <div className={Style.line} key={index}>
+                        <div>
+                            <label className={Style.checkbox}>
+                                <input checked={contract === selectedContract} type="checkbox" onClick={() => handleSelectContract(contract)} />
+                                <span className={Style.checkmark}></span>
+                            </label>
+                        </div>
+                        <div>
+                            <p>{contract.name}</p>
+                        </div>
+                        <div>
+                            <p>{contract.code}</p>
+                        </div>
+                        <div >
+                            <p className={Style.techRetention}>
+                                {contract.technicalRetention}%
+                            </p>
+                        </div>
+                        <div>
+                            <button className={Style.buttonDetails} onClick={() => showContractDetails(contract)}>&#x1F50D;</button>
+                        </div>
                     </div>
+                ))}
 
-                    <div>
-                        <p>Titulo do primeiro contrato de exemplo</p>
-                    </div>
-                    <div>
-                        <p>11002200-01 </p>
-                    </div>
-
-                    <div >
-                        <p className={Style.techRetention}>
-                            12%
-                        </p>
-                    </div>
-
-                    <div>
-                        <button className={Style.buttonDetails}>&#x1F50D;</button>
-                    </div>
-
-                </div>
             </div>
         </PagamentoFornecedor>
     );
