@@ -11,6 +11,7 @@ export default function AppRoutes() {
                 <Route path="/" element={<Consulta />} />
                 <Route path="/contratos" element={<Contratos />} />
                 <Route path="/notafiscal" element={<NotaFiscal />} />
+                <Route path="/notafiscal/:id" element={<NotaFiscal />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

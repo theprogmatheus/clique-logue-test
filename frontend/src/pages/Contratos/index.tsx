@@ -1,11 +1,13 @@
 import PagamentoFornecedor from "@/pages/templates/PagamentoFornecedor";
 import Style from "@/pages/Contratos/index.module.scss";
 import useContrato from "@/hooks/useContrato";
+import ContractDetailsModel from "@/components/ContractDetailsModel";
 
 export default function Contratos() {
 
     const {
         company,
+        contractDetails,
         contracts,
         selectedContract,
         alert,
@@ -59,11 +61,10 @@ export default function Contratos() {
                             </p>
                         </div>
                         <div>
-                            <button className={Style.buttonDetails} onClick={() => showContractDetails(contract)}>&#x1F50D;</button>
+                            <ContractDetailsModel contract={contract}/>
                         </div>
                     </div>
                 ))}
-
             </div>
         </PagamentoFornecedor>
     );

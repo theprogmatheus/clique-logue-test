@@ -34,6 +34,13 @@ export default function useAPI() {
 
     async function createInvoice(contract: Contract, invoiceData: Invoice): Promise<Invoice | null> {
         invoiceData.contractId = contract.id;
+        invoiceData.value = invoiceData.value * 100;
+        invoiceData.pisTax = (invoiceData.pisTax || 0) * 100;
+        invoiceData.csllTax = (invoiceData.csllTax || 0) * 100;
+        invoiceData.inssTax = (invoiceData.inssTax || 0) * 100;
+        invoiceData.irrfTax = (invoiceData.irrfTax || 0) * 100;
+        invoiceData.issqnTax = (invoiceData.issqnTax || 0) * 100;
+        invoiceData.cofinsTax = (invoiceData.cofinsTax || 0) * 100;
 
         const response = await fetch(endPoints.invoices, {
             method: "POST",
@@ -66,16 +73,54 @@ export default function useAPI() {
         return null;
     }
 
-    async function getInvoiceByContract(contract: Contract): Promise<Invoice | null> {
+
+    async function getInvoicesByContract(contract: Contract): Promise<Invoice[]> {
+        const response = await fetch(`${endPoints.invoices}/contract/${contract.id}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data?.body || [];
+        }
+        return [];
+    }
+
+    async function getInvoice(invoiceId: string): Promise<Invoice | null> {
+        const response = await fetch(`${endPoints.invoices}/${invoiceId}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data?.body || null;
+        }
         return null;
     }
+
+    async function getContract(contractId: string): Promise<Contract | null> {
+        const response = await fetch(`${endPoints.contracts}/${contractId}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data?.body || null;
+        }
+        return null;
+    }
+
+    async function getCompany(companyId: string): Promise<Company | null> {
+        const response = await fetch(`${endPoints.companies}/${companyId}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data?.body || null;
+        }
+        return null;
+    }
+
+
 
 
     return {
         getCompanyByCNPJ,
         getContractsByCompany,
-        getInvoiceByContract,
+        getInvoicesByContract,
         createInvoice,
-        createAttachment
+        createAttachment,
+        getInvoice,
+        getContract,
+        getCompany
     };
 }

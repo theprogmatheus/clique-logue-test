@@ -12,6 +12,7 @@ export default function useContrato() {
     const navigate = useNavigate();
 
     const [contracts, setContracts] = useState<Contract[]>([]);
+    const [contractDetails, setContractDetails] = useState<Contract | null>(null);
     const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
     const [alert, setAlert] = useState<{
         title: string,
@@ -36,8 +37,7 @@ export default function useContrato() {
 
     // exibir os detalhes do contrato
     async function showContractDetails(contract: Contract): Promise<void> {
-        // TODO
-        console.log(contract);
+        setContractDetails(contract);
     }
 
     function handlePreviousButton(): void {
@@ -69,6 +69,7 @@ export default function useContrato() {
     return {
         company,
         contracts,
+         contractDetails,
         selectedContract,
         alert,
         showContractDetails,
